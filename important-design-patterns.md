@@ -56,4 +56,24 @@ MacOS = A(rectangle button) + B (Yellow theme)
 _Note_: Here we instantiate multiple product objects that can be grouped together
 
 _UML_:  
-![UML](factory_pattern/abstract_factory_method.jpg)
+![UML](factory_pattern/abstract_factory_method.jpg)  
+
+**Behavioral design patterns** are design patterns that identify common communication patterns among objects.  
+e.g. Strategy, Observer, State etc
+
+**NOTE**:  
+Aggregation is done using pointer to the object of the class
+Composition is done using the object of the class
+
+### Strategy
+
+This resembles the OCP(Open Closed Principle).  
+_Definition_: Algorithms can be selected on the fly, using composition.  
+
+It's a bad idea to use inheritence to solve problems as it may happen that when a method is not needed, it still needs to be implemented in the derived classes 
+
+E.g. :  
+
+Sorting algorithm/Strategy can be selected at run time. This is implemented using aggregation.See strategy.cpp for more details.  
+_UML_:  
+![UML](strategy_pattern/strategy.jpg)
