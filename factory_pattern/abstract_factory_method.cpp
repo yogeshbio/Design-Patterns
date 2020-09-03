@@ -11,13 +11,6 @@ using namespace std;
     Concrete Abstract Creator : Windows, Linux and MacOS creators which actually implement Abstract creator
 */
 
-enum class PCType {
-		Win,
-		Linux,
-        MacOS
-	};
-
-
 class UIButton          // Product A
 {
     public:
@@ -61,6 +54,8 @@ class Screen_Abstract_Factory     // abstract factory can group relevant product
     public:
     virtual unique_ptr<UIButton> UIButtonFactory() = 0;  //product A
     virtual unique_ptr<Theme> ThemeFactory() = 0;     // product B
+
+    virtual ~Screen_Abstract_Factory(){};
 };
 
 class WinConcreteFactory:public Screen_Abstract_Factory   // Concrete Abstract Factory for Windows
@@ -73,6 +68,10 @@ class WinConcreteFactory:public Screen_Abstract_Factory   // Concrete Abstract F
     virtual unique_ptr<Theme> ThemeFactory()
     {
         return make_unique<ConcreteTheme>("white","Win");
+    }
+    virtual ~WinConcreteFactory()
+    {
+        cout << "win factory destructor" <<"\n";
     }
 };
 
@@ -87,6 +86,10 @@ class LinuxConcreteFactory:public Screen_Abstract_Factory   // Concrete Abstract
     {
         return make_unique<ConcreteTheme>("black","Linux");
     }
+    virtual ~LinuxConcreteFactory()
+    {
+        cout << "linux factory destructor" <<"\n";
+    }
 };
 class MacOSConcreteFactory:public Screen_Abstract_Factory   // Concrete Abstract Factory for MacOS
 {
@@ -99,6 +102,10 @@ class MacOSConcreteFactory:public Screen_Abstract_Factory   // Concrete Abstract
     {
         return make_unique<ConcreteTheme>("yellow","MacOS");
     }
+    virtual ~MacOSConcreteFactory()
+    {
+        cout << "maocOS factory destructor" <<"\n";
+    }
 };
 
 int main()
@@ -110,6 +117,15 @@ int main()
     button->create_ui_button();
     theme->color_theme();
 
+/*
+    When we change the unique pointer to point to another class, the previous allocated memory is destroyed
+    and hence destructor gets called.
+    There is no memory leak here, the assignment will deallocate the resources associated with the first allocation.
+    Move assignment operator is called when 2nd  or further assignments are done with make_unique.
+    Internally move assignment does a reset, which will deallocate previous resources
+
+
+*/
     // do linux stuff
     screen = make_unique<LinuxConcreteFactory>();
     button = screen->UIButtonFactory();
