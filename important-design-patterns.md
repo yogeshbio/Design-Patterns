@@ -76,4 +76,14 @@ E.g. :
 
 Sorting algorithm/Strategy can be selected at run time. This is implemented using aggregation.See strategy.cpp for more details.  
 _UML_:  
-![UML](strategy_pattern/strategy.jpg)
+![UML](strategy_pattern/strategy.jpg)  
+
+### Observer
+
+_Definition_: The Observer Design Pattern can be used whenever a subject has to be observed by one or more observers.
+Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+
+E.g. :
+See observer.cpp for more details.  
+_UML_:  
+![UML](observer_pattern/observer.png)
